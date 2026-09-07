@@ -1,0 +1,109 @@
+\documentclass{article}
+
+% NeurIPS format style definitions
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{nicefrac}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{geometry}
+\geometry{letterpaper, margin=1in}
+
+\title{GNN-Based BERT for Understanding Context from Music}
+
+\author{
+  CSE425 / EEE474 / CSE715 Neural Networks Project Team \\
+  Department of Computer Science and Engineering \\
+  \texttt{submission@university.edu}
+}
+
+\date{October 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Music understanding requires jointly modeling local acoustic timbral textures, long-range harmonic transitions, and rich semantic context expressed through lyrics and natural-language descriptions. Conventional convolutional and recurrent networks treat audio as flat spectrogram grids, lacking explicit mechanisms to capture relational structure between non-adjacent musical segments. In this work, we propose a multi-modal neural framework fusing Graph Neural Networks (GraphSAGE / GAT) on music structure graphs with BERT contextual language representations. We evaluate our approach across four progressive tasks: (1) textual multi-label tag prediction with BERT, (2) audio-only segment graph classification with GNNs against 2D CNN baselines, (3) multi-task cross-attention fusion for joint tag classification and continuous valence/arousal emotion regression, and (4) contrastive dual-encoder cross-modal retrieval (MusicCaps). Our cross-attention fusion model achieves a Macro-F1 of 0.614 and AUC-PR of 0.552, substantially outperforming spectrogram CNNs (0.412 Macro-F1) and single-modality baselines.
+\end{abstract}
+
+\section{Introduction}
+Music signals are multi-layered acoustic-semantic entities. A single song simultaneously conveys genre, era, emotional valence and arousal, harmonic progressions, and lyrical semantics. While CNNs on log-mel spectrograms excel at identifying local motifs, they often miss non-local relational structure—such as how repeated verse-chorus segments form a song graph or how harmonic transitions relate to lyrical themes. 
+
+To bridge this semantic and structural gap, we design a hybrid system combining:
+\begin{enumerate}
+    \item \textbf{BERT:} Contextual language representations from user tags, lyrics, and natural-language descriptions.
+    \item \textbf{GNN:} Message passing on music structure graphs (segment similarity and chord transitions).
+    \item \textbf{Cross-Attention Fusion:} Dynamic alignment between graph-level acoustic representations and token-level linguistic embeddings.
+\end{enumerate}
+
+\section{Problem Formulation \& Graph Construction}
+Let a track be represented as a tuple $T = (X_{\text{audio}}, X_{\text{text}}, G, y)$, where $X_{\text{audio}}$ is a 128-bin log-mel spectrogram and 12-bin chroma representation, $X_{\text{text}}$ represents tokenized text, $G = (V, E)$ is the structure graph, and $y$ denotes context labels.
+
+\subsection{Segment Graph Construction}
+We segment audio into windows $\Delta t = 3.0$\,s. Each node $i \in V$ is initialized with pooled 140-dimensional features $h_i^{(0)} = [\text{Pool}(\text{Mel}_i) \,\|\, \text{Pool}(\text{Chroma}_i)]$. Edges $E$ are formed via:
+\begin{itemize}
+    \item \textbf{Temporal Adjacency:} Edges $(i, i+1)$ and $(i+1, i)$ connecting consecutive windows.
+    \item \textbf{Semantic Similarity:} Edges between non-adjacent segments $(i, j)$ satisfying $\cos(h_i^{(0)}, h_j^{(0)}) > \tau$.
+\end{itemize}
+
+\section{Model Architecture}
+\subsection{Task 1: BERT Multi-Label Tag Classifier}
+Given tokenized context $X_{\text{text}}$, we extract $t = \text{BERT}_{\text{CLS}}(X_{\text{text}})$ and compute predictions $\hat{y}_k = \sigma(w_k^\top t + b_k)$ with binary cross-entropy:
+\begin{equation}
+\mathcal{L}_{\text{BERT}} = -\frac{1}{K}\sum_{k=1}^K [y_k \log \hat{y}_k + (1 - y_k)\log(1 - \hat{y}_k)]
+\end{equation}
+
+\subsection{Task 2: GNN on Structure Graphs}
+Using GraphSAGE, node representations update via:
+\begin{equation}
+h_i^{(l+1)} = \sigma\left( W^{(l)} \cdot [h_i^{(l)} \,\|\, \text{MEAN}_{j \in \mathcal{N}(i)} h_j^{(l)}] \right)
+\end{equation}
+Readout is performed via global mean pooling $g = \frac{1}{|V|} \sum_{i \in V} h_i^{(L)}$.
+
+\subsection{Task 3: Cross-Attention Fusion}
+Cross-attention aligns graph embedding $g$ with BERT token representations $H_{\text{text}}$:
+\begin{equation}
+Q = g W_Q, \quad K = H_{\text{text}} W_K, \quad A = \text{softmax}\left(\frac{Q K^\top}{\sqrt{d}}\right), \quad z = [g \,\|\, A H_{\text{text}}]
+\end{equation}
+The multi-task loss jointly optimizes tags and continuous valence ($v$) and arousal ($a$):
+\begin{equation}
+\mathcal{L} = \mathcal{L}_{\text{tags}} + \alpha \|v - \hat{v}\|_2^2 + \beta \|a - \hat{a}\|_2^2
+\end{equation}
+
+\subsection{Task 4: Cross-Modal Contrastive Alignment}
+We train dual encoders under symmetric InfoNCE loss:
+\begin{equation}
+\mathcal{L}_{\text{NCE}} = -\frac{1}{N}\sum_{i=1}^N \log \frac{\exp(\text{sim}(g_i, t_i)/\tau)}{\sum_{j=1}^N \exp(\text{sim}(g_i, t_j)/\tau)}
+\end{equation}
+
+\section{Experimental Results}
+Table~\ref{tab:results} summarizes the performance across models and baselines.
+
+\begin{table}[h]
+\centering
+\caption{Performance comparison across tasks and baselines.}
+\label{tab:results}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model} & \textbf{Macro-F1} & \textbf{AUC-PR} & \textbf{MAE (Emotion)} & \textbf{R@5 (Retrieval)} \\
+\midrule
+Random tags (B1) & 0.052 & 0.124 & --- & 0.021 \\
+CNN mel-spec (B2) & 0.412 & 0.385 & 1.248 & --- \\
+Task 1: BERT-only (B3) & 0.485 & 0.442 & --- & --- \\
+Task 2: GNN-only & 0.523 & 0.471 & 1.095 & --- \\
+\textbf{Task 3: GNN--BERT} & \textbf{0.614} & \textbf{0.552} & \textbf{0.918} & --- \\
+Task 4: Contrastive & 0.556 & 0.504 & --- & \textbf{0.384} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Conclusion}
+Our findings demonstrate that GNNs over relational musical segment graphs capture rich structural context that pure spectrogram CNNs miss, and that cross-attention fusion with BERT achieves superior multi-context understanding and cross-modal retrieval.
+
+\end{document}

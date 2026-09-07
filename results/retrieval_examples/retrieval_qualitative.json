@@ -1,0 +1,122 @@
+[
+  {
+    "query_caption": "An energetic classical track driven by pulsing strings riffs, calm rhythm sections, and driving beat.",
+    "ground_truth_track": "track_0015",
+    "top_matches": [
+      {
+        "rank": 1,
+        "matched_track": "track_0018",
+        "similarity_score": -0.06631709635257721,
+        "is_correct": false
+      },
+      {
+        "rank": 2,
+        "matched_track": "track_0007",
+        "similarity_score": -0.06844546645879745,
+        "is_correct": false
+      },
+      {
+        "rank": 3,
+        "matched_track": "track_0015",
+        "similarity_score": -0.07015863806009293,
+        "is_correct": true
+      }
+    ]
+  },
+  {
+    "query_caption": "A vibrant hiphop instrumental arrangement showcasing intricate strings solos with a energetic tempo.",
+    "ground_truth_track": "track_0025",
+    "top_matches": [
+      {
+        "rank": 1,
+        "matched_track": "track_0018",
+        "similarity_score": -0.06734464317560196,
+        "is_correct": false
+      },
+      {
+        "rank": 2,
+        "matched_track": "track_0007",
+        "similarity_score": -0.0693395733833313,
+        "is_correct": false
+      },
+      {
+        "rank": 3,
+        "matched_track": "track_0015",
+        "similarity_score": -0.07122616469860077,
+        "is_correct": false
+      }
+    ]
+  },
+  {
+    "query_caption": "A vibrant pop instrumental arrangement showcasing intricate strings solos with a happy tempo.",
+    "ground_truth_track": "track_0000",
+    "top_matches": [
+      {
+        "rank": 1,
+        "matched_track": "track_0018",
+        "similarity_score": -0.07161013036966324,
+        "is_correct": false
+      },
+      {
+        "rank": 2,
+        "matched_track": "track_0007",
+        "similarity_score": -0.07358792424201965,
+        "is_correct": false
+      },
+      {
+        "rank": 3,
+        "matched_track": "track_0015",
+        "similarity_score": -0.07563872635364532,
+        "is_correct": false
+      }
+    ]
+  },
+  {
+    "query_caption": "An energetic electronic track driven by pulsing strings riffs, uplifting rhythm sections, and driving beat.",
+    "ground_truth_track": "track_0007",
+    "top_matches": [
+      {
+        "rank": 1,
+        "matched_track": "track_0018",
+        "similarity_score": -0.06286023557186127,
+        "is_correct": false
+      },
+      {
+        "rank": 2,
+        "matched_track": "track_0007",
+        "similarity_score": -0.06488865613937378,
+        "is_correct": true
+      },
+      {
+        "rank": 3,
+        "matched_track": "track_0015",
+        "similarity_score": -0.06688358634710312,
+        "is_correct": false
+      }
+    ]
+  },
+  {
+    "query_caption": "An acoustic classical song featuring rhythmic strings patterns, delivering a dark and soulful musical journey.",
+    "ground_truth_track": "track_0018",
+    "top_matches": [
+      {
+        "rank": 1,
+        "matched_track": "track_0018",
+        "similarity_score": -0.06423047184944153,
+        "is_correct": true
+      },
+      {
+        "rank": 2,
+        "matched_track": "track_0007",
+        "similarity_score": -0.06624975800514221,
+        "is_correct": false
+      },
+      {
+        "rank": 3,
+        "matched_track": "track_0015",
+        "similarity_score": -0.06782054156064987,
+        "is_correct": false
+      }
+    ]
+  }
+]

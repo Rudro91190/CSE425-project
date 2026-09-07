@@ -1,0 +1,134 @@
+[
+  {
+    "case_id": 1,
+    "track_id": "track_0015",
+    "caption": "An energetic classical track driven by pulsing strings riffs, calm rhythm sections, and driving beat.",
+    "ground_truth_tags": [
+      "classical",
+      "calm",
+      "strings"
+    ],
+    "predicted_top_tags": [
+      [
+        "calm",
+        0.5167694687843323
+      ],
+      [
+        "strings",
+        0.5167418718338013
+      ],
+      [
+        "piano",
+        0.5120781660079956
+      ],
+      [
+        "pop",
+        0.5117578506469727
+      ],
+      [
+        "classical",
+        0.5115910768508911
+      ]
+    ],
+    "graph_structure": {
+      "num_temporal_nodes": 4,
+      "num_structural_edges": 14,
+      "segment_duration_seconds": 3.0
+    },
+    "emotion_predictions": {
+      "pred_valence": 0.19904065132141113,
+      "ground_truth_valence": 3.9234986305236816,
+      "pred_arousal": -0.0005467906594276428,
+      "ground_truth_arousal": 2.7150423526763916
+    },
+    "cross_modal_alignment_score": 0.009501869790256023
+  },
+  {
+    "case_id": 2,
+    "track_id": "track_0025",
+    "caption": "A vibrant hiphop instrumental arrangement showcasing intricate strings solos with a energetic tempo.",
+    "ground_truth_tags": [
+      "hiphop",
+      "energetic",
+      "strings"
+    ],
+    "predicted_top_tags": [
+      [
+        "calm",
+        0.5228047966957092
+      ],
+      [
+        "strings",
+        0.5222533941268921
+      ],
+      [
+        "classical",
+        0.5167684555053711
+      ],
+      [
+        "pop",
+        0.5158186554908752
+      ],
+      [
+        "melancholic",
+        0.5130613446235657
+      ]
+    ],
+    "graph_structure": {
+      "num_temporal_nodes": 4,
+      "num_structural_edges": 10,
+      "segment_duration_seconds": 3.0
+    },
+    "emotion_predictions": {
+      "pred_valence": 0.22639566659927368,
+      "ground_truth_valence": 6.071260929107666,
+      "pred_arousal": 0.008227050304412842,
+      "ground_truth_arousal": 5.406709671020508
+    },
+    "cross_modal_alignment_score": 0.009005130268633366
+  },
+  {
+    "case_id": 3,
+    "track_id": "track_0000",
+    "caption": "A vibrant pop instrumental arrangement showcasing intricate strings solos with a happy tempo.",
+    "ground_truth_tags": [
+      "pop",
+      "happy",
+      "strings"
+    ],
+    "predicted_top_tags": [
+      [
+        "strings",
+        0.520876944065094
+      ],
+      [
+        "calm",
+        0.5176190733909607
+      ],
+      [
+        "piano",
+        0.514289140701294
+      ],
+      [
+        "pop",
+        0.5133426189422607
+      ],
+      [
+        "classical",
+        0.5105154514312744
+      ]
+    ],
+    "graph_structure": {
+      "num_temporal_nodes": 4,
+      "num_structural_edges": 14,
+      "segment_duration_seconds": 3.0
+    },
+    "emotion_predictions": {
+      "pred_valence": 0.19997073709964752,
+      "ground_truth_valence": 7.043743133544922,
+      "pred_arousal": 0.009590879082679749,
+      "ground_truth_arousal": 2.3845701217651367
+    },
+    "cross_modal_alignment_score": 0.009419205598533154
+  }
+]

@@ -1,0 +1,23 @@
+{
+  "Task 1: BERT-only": {
+    "Macro-F1": 0.033333332944444446,
+    "AUC-PR": 0.14416666666666667
+  },
+  "Task 2: GNN-only": {
+    "Macro-F1": 0.10333333235444445,
+    "AUC-PR": 0.20041666656666668
+  },
+  "CNN mel-spec": {
+    "Macro-F1": 0.11190476088015874,
+    "AUC-PR": 0.1224999999
+  },
+  "Task 3: GNN-BERT": {
+    "Macro-F1": 0.12857142735238095,
+    "AUC-PR": 0.16812499990000002,
+    "MAE (emotion)": 5.586866855621338
+  },
+  "Task 4: Contrastive": {
+    "R@5 (retrieval)": 1.0,
+    "R@1 (retrieval)": 0.2
+  }
+}

@@ -1,0 +1,56 @@
+project:
+  name: "gnn-bert-music-context"
+  seed: 42
+  device: "cuda" # falls back to "cpu" if cuda unavailable
+
+paths:
+  raw_data_dir: "data/raw"
+  processed_data_dir: "data/processed"
+  splits_dir: "data/splits"
+  results_dir: "results"
+  plots_dir: "results/plots"
+  retrieval_dir: "results/retrieval_examples"
+  models_dir: "results/checkpoints"
+
+audio:
+  sample_rate: 22050
+  n_mels: 128
+  n_chroma: 12
+  n_fft: 2048
+  hop_length: 512
+  segment_duration: 5.0 # seconds per segment window
+  similarity_threshold_tau: 0.65 # cosine similarity threshold for graph edges
+
+text:
+  model_name: "distilbert-base-uncased"
+  max_length: 128
+  d_model: 768
+
+graph:
+  in_channels: 140 # 128 mel bins + 12 chroma bins
+  hidden_channels: 128
+  out_channels: 128
+  num_layers: 2
+  gnn_type: "GraphSAGE" # "GraphSAGE" or "GAT"
+  dropout: 0.2
+
+fusion:
+  fusion_type: "cross_attention" # "cross_attention", "early_concat", "bert_only", "gnn_only"
+  d_proj: 128
+  num_heads: 4
+  dropout: 0.2
+
+multitask:
+  alpha_valence: 0.5
+  beta_arousal: 0.5
+
+contrastive:
+  temperature: 0.07
+  embed_dim: 128
+
+training:
+  batch_size: 16
+  learning_rate: 1e-4
+  weight_decay: 1e-4
+  epochs: 10
+  patience: 3
