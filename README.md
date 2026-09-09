@@ -1,12 +1,15 @@
 # GNN-Based BERT for Understanding Context from Music
 
 [![Course](https://img.shields.io/badge/Course-Neural%20Networks%20CSE425%20%7C%20EEE474%20%7C%20CSE715-blue.svg)](#)
+[![Overleaf Report](https://img.shields.io/badge/Overleaf-Read%20Paper-47A141?logo=overleaf&logoColor=white)](https://www.overleaf.com/read/jkphryvjzyny#69b5d2)
 [![Python](https://img.shields.io/badge/Python-3.10%20%7C%203.11%20%7C%203.12-brightgreen.svg)](#)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0%2B-red.svg)](#)
 [![PyG](https://img.shields.io/badge/PyG-Graph--Neural--Networks-orange.svg)](#)
 [![Transformers](https://img.shields.io/badge/HuggingFace-Transformers-yellow.svg)](#)
 
 A multi-modal deep learning framework combining **Graph Neural Networks (GraphSAGE / GAT)** on audio structure graphs and **BERT / DistilBERT** contextual language representations for music multi-label tagging, continuous valence/arousal emotion regression, and cross-modal text-audio contrastive retrieval (MusicCaps).
+
+> 📄 **Overleaf Project Report**: [https://www.overleaf.com/read/jkphryvjzyny#69b5d2](https://www.overleaf.com/read/jkphryvjzyny#69b5d2)
 
 ---
 
@@ -95,9 +98,21 @@ gnn-bert-music-context/
 │   ├── plots/               # Training curves, t-SNE, attention heatmaps
 │   └── retrieval_examples/  # Qualitative top-K retrieval samples
 └── report/
-    ├── neurips_report_draft.md # Complete NeurIPS template draft
-    └── README.md
+    ├── final_report.pdf     # Compiled PDF research paper
+    ├── main.tex             # Complete NeurIPS LaTeX source
+    └── neurips_report_draft.md # Complete NeurIPS template draft
 ```
+
+---
+
+## 📄 Project Research Report
+
+The complete project research paper is accessible online via Overleaf and locally within this repository:
+
+- 🔗 **Overleaf Document (Live)**: [https://www.overleaf.com/read/jkphryvjzyny#69b5d2](https://www.overleaf.com/read/jkphryvjzyny#69b5d2)
+- 📝 **LaTeX Source**: [`report/main.tex`](report/main.tex)
+- 📑 **Compiled PDF**: [`report/final_report.pdf`](report/final_report.pdf)
+- 📋 **Markdown Draft**: [`report/neurips_report_draft.md`](report/neurips_report_draft.md)
 
 ---
 
