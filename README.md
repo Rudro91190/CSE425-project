@@ -98,9 +98,10 @@ gnn-bert-music-context/
 │   ├── plots/               # Training curves, t-SNE, attention heatmaps
 │   └── retrieval_examples/  # Qualitative top-K retrieval samples
 └── report/
-    ├── final_report.pdf     # Compiled PDF research paper
-    ├── main.tex             # Complete NeurIPS LaTeX source
-    └── neurips_report_draft.md # Complete NeurIPS template draft
+    ├── neurips_2026.tex     # Complete NeurIPS LaTeX paper source from Overleaf
+    ├── checklist.tex        # NeurIPS Paper Checklist
+    ├── neurips_2026.sty     # NeurIPS 2026 LaTeX style package
+    └── README.md            # Overleaf report document link
 ```
 
 ---
@@ -110,9 +111,9 @@ gnn-bert-music-context/
 The complete project research paper is accessible online via Overleaf and locally within this repository:
 
 - 🔗 **Overleaf Document (Live)**: [https://www.overleaf.com/read/jkphryvjzyny#69b5d2](https://www.overleaf.com/read/jkphryvjzyny#69b5d2)
-- 📝 **LaTeX Source**: [`report/main.tex`](report/main.tex)
-- 📑 **Compiled PDF**: [`report/final_report.pdf`](report/final_report.pdf)
-- 📋 **Markdown Draft**: [`report/neurips_report_draft.md`](report/neurips_report_draft.md)
+- 📝 **LaTeX Source (`neurips_2026.tex`)**: [`report/neurips_2026.tex`](report/neurips_2026.tex)
+- 📋 **Checklist (`checklist.tex`)**: [`report/checklist.tex`](report/checklist.tex)
+- 🎨 **Style Package (`neurips_2026.sty`)**: [`report/neurips_2026.sty`](report/neurips_2026.sty)
 
 ---
 
